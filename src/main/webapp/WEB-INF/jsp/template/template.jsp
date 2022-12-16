@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>pages template</title>
+    <link type="text/css" rel="stylesheet" href='<spring:url value="/css/first.css"/>' >
 </head>
 <body>
     <div>

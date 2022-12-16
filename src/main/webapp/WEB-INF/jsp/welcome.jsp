@@ -3,9 +3,10 @@
 
 <html>
     <head>
-        <title>My First JSP</title>
+        <title>${title}</title>
     </head>
     <body>
         <h1>Hello World ${name}</h1>
+        <img src= '<spring:url value="/images/clock_green.jpg"/>' width="250px"/>
     </body>
 </html>
