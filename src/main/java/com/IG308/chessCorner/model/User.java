@@ -16,10 +16,9 @@ public class User{
     private String username;
 
     @NotNull
-    @Size(min=6, max=32)
+    @Size(min=6, max=40)
     private String password;
 
-    @Pattern(regexp="\\d{4}\\/\\d{2}.\\d{2}.\\d{2}")
     @Size(max=20)
     private String phoneNumber;
 
