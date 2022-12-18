@@ -51,7 +51,7 @@
         </div>
     </nav>
 
-    <div class="d-flex min-vh-100 justify-content-center align-items-center m-5 border border-danger">
+    <div class="d-flex min-vh-100 m-5 border border-danger">
         <tiles:insertAttribute name="main-content" />
     </div>
 
