@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/hello")
-public class WelcomeController {
+@RequestMapping(value="/checkout")
+public class CheckoutController {
     @RequestMapping (method=RequestMethod.GET)
-    public String home(Model model) {
-        model.addAttribute("name", "Oscar");
-        model.addAttribute("title", "Homepage");
-        return "integrated:welcome";
+    public String checkout(Model model) {
+        model.addAttribute("title", "Checkout");
+        return "integrated:checkout";
     }
 }
