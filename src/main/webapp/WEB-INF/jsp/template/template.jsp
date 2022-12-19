@@ -1,13 +1,24 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8"
+        contentType="text/html; charset=UTF-8" %>
 <%@ include file="../include/importTags.jsp" %>
 
 <!doctype html>
 <html class="min-vh-100">
 <head>
+
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
           crossorigin="anonymous">
+
+    <spring:url var="localeFr" value="">
+        <spring:param name="locale" value="fr"/>
+    </spring:url>
+
+    <spring:url var="localeEn" value="">
+        <spring:param name="locale" value="en"/>
+    </spring:url>
+
 </head>
 <body class="min-vh-100">
 
@@ -17,29 +28,43 @@
                 <img src='<spring:url value="/images/logo.png"/>' alt="logo" width="40">
             </a>
             <a class="ml-4 text-secondary" href="<spring:url value='/'/>">
-                Home
+                <spring:message code="home"/>
             </a>
             <a class="ml-4 text-secondary" href="<spring:url value='/product/all'/>">
-                Products
+                <spring:message code="products"/>
             </a>
         </div>
 
         <div class="d-flex collapse w-50 justify-content-end align-items-center flex-nowrap p-2">
             <div class="pr-4">
                 <div class="btn-group" role="group">
-                    <a role="button" class="btn btn-info" href="<spring:url value='/login'/>">Login</a>
-                    <a role="button" class="btn btn-outline-info" href="<spring:url value='/register'/>">Register</a>
+                    <a role="button" class="btn btn-info" href="<spring:url value='/login'/>">
+                        <spring:message code="login"/>
+                    </a>
+                    <a role="button" class="btn btn-outline-info" href="<spring:url value='/register'/>">
+                        <spring:message code="register"/>
+                    </a>
                 </div>
             </div>
 
             <div class="dropdown pr-4">
                 <button class="btn btn-outline-dark dropdown-toggle he" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src='<spring:url value="/images/en_flag.png"/>' class="pr-1" style="height: 25px" alt="uk flag">
-                    Language
+                    <c:if test="${cookie.localeCookie.value == 'fr'}">
+                        <img src='<spring:url value="/images/fr_flag.png"/>' class="pr-1" style="height: 25px" alt="fr flag">
+                    </c:if>
+                    <c:if test="${cookie.localeCookie.value == 'en'}">
+                        <img src='<spring:url value="/images/en_flag.png"/>' class="pr-1" style="height: 25px" alt="uk flag">
+                    </c:if>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">English</a>
-                    <a class="dropdown-item" href="#">French</a>
+                    <a class="dropdown-item" href="${localeEn}">
+                        <img src='<spring:url value="/images/en_flag.png"/>' class="pr-1" style="height: 25px" alt="uk flag">
+                        <spring:message code="english"/>
+                    </a>
+                    <a class="dropdown-item" href="${localeFr}">
+                        <img src='<spring:url value="/images/fr_flag.png"/>' class="pr-1" style="height: 25px" alt="ru flag">
+                        <spring:message code="french"/>
+                    </a>
                 </div>
             </div>
 
