@@ -4,22 +4,22 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="order")
+@Table(name="customer_order")
 public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="orderId")
+    @Column(name="orderid")
     private Integer orderId;
 
-    @Column(name="orderDate")
+    @Column(name="orderdate")
     private Date orderDate;
 
     @ManyToOne
-    @JoinColumn(name="userMail", referencedColumnName="mailAddress")
+    @JoinColumn(name="usermail", referencedColumnName="mailaddress")
     private UserEntity userEntity;
 
-    @Column(name="isPaid")
+    @Column(name="ispaid")
     private Boolean isPaid;
 
     public OrderEntity(){

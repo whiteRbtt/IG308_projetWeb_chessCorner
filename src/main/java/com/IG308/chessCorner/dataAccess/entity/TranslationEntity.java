@@ -5,24 +5,24 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="translation")
-public class TranslationEntity {
+public class TranslationEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="translationId")
+    @Column(name="translationid")
     private Integer translationId;
 
-    @Column(name="productName")
+    @Column(name="productname")
     private String productName;
 
-    @Column(name="productDescription")
+    @Column(name="productdescription")
     private String productDescription;
 
-    @JoinColumn(name="productId", referencedColumnName="productId")
+    @JoinColumn(name="productid", referencedColumnName="productid")
     @ManyToOne
     private ProductEntity productEntity;
 
-    @JoinColumn(name="languageCode", referencedColumnName="code")
+    @JoinColumn(name="languagecode", referencedColumnName="code")
     @ManyToOne
     private LanguageEntity languageEntity;
 

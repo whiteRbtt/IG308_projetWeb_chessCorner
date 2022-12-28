@@ -29,6 +29,7 @@ public class UserDAO implements UserDataAccess{
         return providerConverter.userEntityToUserModel(userEntity);
     }
 
+    @Override
     public User save(User user){
         UserEntity userEntity = providerConverter.userModelToUserEntity(user);
         UserEntity savedUserEntity = userRepository.save(userEntity);

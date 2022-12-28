@@ -2,26 +2,31 @@ package com.IG308.chessCorner.model;
 
 public class Language {
 
-    private String Code;
-    private String Name;
+    private String code;
+    private String name;
 
     public Language(){
 
     }
 
     public String getCode() {
-        return Code;
+        return code;
     }
 
     public void setCode(String code) {
-        Code = code;
+        this.code = code;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+    	return "Language [code=" + code + ", name=" + name + "]";
     }
 }

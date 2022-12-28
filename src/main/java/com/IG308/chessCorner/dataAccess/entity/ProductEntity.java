@@ -9,7 +9,7 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="productId")
+    @Column(name="productid")
     private Integer productId;
 
     @Column(name="price")
@@ -20,5 +20,29 @@ public class ProductEntity {
 
     public ProductEntity(){
 
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Collection<TranslationEntity> getProductTranslations() {
+        return productTranslations;
+    }
+
+    public void setProductTranslations(Collection<TranslationEntity> productTranslations) {
+        this.productTranslations = productTranslations;
     }
 }

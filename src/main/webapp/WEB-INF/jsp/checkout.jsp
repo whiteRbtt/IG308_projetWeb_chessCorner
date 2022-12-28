@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>${title}</title>
+    <title>${title} - <spring:message code="checkout"/></title>
 </head>
 <body>
 <h1>Checkout</h1>

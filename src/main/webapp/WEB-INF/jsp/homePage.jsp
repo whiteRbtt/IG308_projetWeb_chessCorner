@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>${title}</title>
+    <title>${title} - <spring:message code="home"/></title>
 </head>
 <body>
     <div class="d-flex w-100 flex-column justify-content-start align-items-center">
@@ -15,19 +15,19 @@
         <div class="carousel slide mb-5" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src='<spring:url value="/images/products/board_vinyl.jpg"/>' class="d-block" alt="board_vinyl" style="width: 400px">
+                    <img src='<spring:url value="/images/products/product1.jpg"/>' class="d-block" alt="board_vinyl" style="width: 400px">
                 </div>
                 <div class="carousel-item">
-                    <img src='<spring:url value="/images/products/clock_green.jpg"/>' class="d-block" alt="clock_green" style="width: 400px">
+                    <img src='<spring:url value="/images/products/product3.jpg"/>' class="d-block" alt="clock_green" style="width: 400px">
                 </div>
                 <div class="carousel-item">
-                    <img src='<spring:url value="/images/products/piece_metal.jpg"/>' class="d-block" alt="piece_metal" style="width: 400px">
+                    <img src='<spring:url value="/images/products/product7.jpg"/>' class="d-block" alt="piece_metal" style="width: 400px">
                 </div>
                 <div class="carousel-item">
-                    <img src='<spring:url value="/images/products/board_red.jpg"/>' class="d-block" alt="board_red" style="width: 400px">
+                    <img src='<spring:url value="/images/products/product10.jpg"/>' class="d-block" alt="board_red" style="width: 400px">
                 </div>
                 <div class="carousel-item">
-                    <img src='<spring:url value="/images/products/travel_set.jpg"/>' class="d-block" alt="travel_set" style="width: 400px">
+                    <img src='<spring:url value="/images/products/product12.jpg"/>' class="d-block" alt="travel_set" style="width: 400px">
                 </div>
             </div>
         </div>

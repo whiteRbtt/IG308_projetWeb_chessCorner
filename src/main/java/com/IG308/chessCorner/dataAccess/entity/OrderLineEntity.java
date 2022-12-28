@@ -8,14 +8,14 @@ public class OrderLineEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="orderLineId")
+    @Column(name="orderlineid")
     private Integer orderLineId;
 
-    @JoinColumn(name="orderId", referencedColumnName = "orderId")
+    @JoinColumn(name="orderid", referencedColumnName = "orderid")
     @ManyToOne
     private OrderEntity orderEntity;
 
-    @JoinColumn(name="productId", referencedColumnName = "productId")
+    @JoinColumn(name="productid", referencedColumnName = "productid")
     @ManyToOne
     private ProductEntity productEntity;
 

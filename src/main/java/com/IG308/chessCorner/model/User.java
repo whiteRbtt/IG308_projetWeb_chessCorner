@@ -43,6 +43,16 @@ public class User{
     public User() {
     }
 
+    public User(String username, String password, String phoneNumber, String firstName, String lastName, Date birthDate, String address) {
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.address = address;
+    }
+
     public void setUsername(String username){
         this.username = username;
     }
@@ -125,4 +135,17 @@ public class User{
 //        return true;
 //    }
 
+    // TOREMOVE
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

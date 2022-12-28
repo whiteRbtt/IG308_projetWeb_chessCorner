@@ -13,7 +13,7 @@ public class Order {
 
     }
 
-    public Order(Date orderDate, User user, Boolean isPaid){
+    public Order(Date orderDate, User user, Boolean isPaid) {
         this.orderDate = orderDate;
         this.user = user;
         this.isPaid = isPaid;
@@ -50,4 +50,5 @@ public class Order {
     public void setIsPaid(Boolean isPaid) {
         this.isPaid = isPaid;
     }
+
 }

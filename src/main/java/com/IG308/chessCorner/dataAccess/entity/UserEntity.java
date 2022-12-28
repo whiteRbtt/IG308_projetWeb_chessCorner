@@ -7,23 +7,27 @@ import java.sql.Date;
 @Table(name="user")
 public class UserEntity {
 
+    // we had to drop camel case for the column names because of the way Hibenate works
+    // see https://github.com/spring-projects/spring-boot/issues/2129
+    // and https://stackoverflow.com/questions/38948289/java-sql-sqlsyntaxerrorexception-unknown-column-in-field-list
+
     @Id
-    @Column(name="mailAddress")
+    @Column(name="mailaddress")
     private String mailAddress;
 
-    @Column(name="hashedPwd")
+    @Column(name="hashedpwd")
     private String hashedPwd;
 
-    @Column(name="phoneNumber")
+    @Column(name="phonenumber")
     private String phoneNumber;
 
-    @Column(name="firstName")
+    @Column(name="firstname")
     private String firstName;
 
-    @Column(name="lastName")
+    @Column(name="lastname")
     private String lastName;
 
-    @Column(name="birthDate")
+    @Column(name="birthdate")
     private Date birthDate;
 
     @Column(name="address")

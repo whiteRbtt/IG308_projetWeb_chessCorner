@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>${title}</title>
+    <title>${title} - <spring:message code="login"/></title>
 </head>
 <body>
     <div class="d-flex w-100 flex-column justify-content-start align-items-center">

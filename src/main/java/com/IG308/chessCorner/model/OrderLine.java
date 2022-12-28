@@ -50,4 +50,5 @@ public class OrderLine {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }

@@ -1,7 +1,6 @@
 package com.IG308.chessCorner.dataAccess.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name="supported_language")
