@@ -18,6 +18,7 @@ public class ProviderConverter {
         UserEntity userEntity = mapper.map(user, UserEntity.class);
         userEntity.setMailAddress(user.getUsername());
         userEntity.setHashedPwd(user.getPassword());
+        userEntity.setAuthorities(user.getRole());
         return userEntity;
     }
 
@@ -25,6 +26,11 @@ public class ProviderConverter {
         User user = mapper.map(userEntity, User.class);
         user.setUsername(userEntity.getMailAddress());
         user.setPassword(userEntity.getHashedPwd());
+        user.setAccountNonExpired(userEntity.getAccountNonExpired());
+        user.setAccountNonLocked(userEntity.getAccountNonLocked());
+        user.setCredentialsNonExpired(userEntity.getCredentialsNonExpired());
+        user.setEnabled(userEntity.getEnabled());
+        user.setAuthorities(userEntity.getAuthorities());
         return user;
     }
 

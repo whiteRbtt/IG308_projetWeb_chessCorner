@@ -1,14 +1,14 @@
 package com.IG308.chessCorner.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.*;
-// import java.util.Collection;
+import java.util.Collection;
 import java.util.Date;
 
-public class User{
+public class User implements UserDetails{
 
     @NotNull
     @Size(max=50)
@@ -40,112 +40,121 @@ public class User{
     @Size(max=100)
     private String address;
 
+    private String authorities = "ROLE_USER";
+
+    private boolean accountNonExpired = true;
+
+    private boolean accountNonLocked = true;
+
+    private boolean credentialsNonExpired = true;
+
+    private boolean enabled = true;
+
     public User() {
-    }
-
-    public User(String username, String password, String phoneNumber, String firstName, String lastName, Date birthDate, String address) {
-        this.username = username;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.address = address;
-    }
-
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
-    }
-
-
-    public void setPhoneNumber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
     }
 
     public String getPhoneNumber(){
         return phoneNumber;
     }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
+    public void setPhoneNumber(String phoneNumber){
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            this.phoneNumber = null;
+        } else {
+            this.phoneNumber = phoneNumber;
+        }
     }
 
     public String getFirstName(){
         return firstName;
     }
-
-    public void setLastName(String lastName){
-        this.lastName = lastName;
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
     }
+
 
     public String getLastName(){
         return lastName;
     }
-
-    public void setBirthDate(Date birthDate){
-        this.birthDate = birthDate;
+    public void setLastName(String lastName){
+        this.lastName = lastName;
     }
+
 
     public Date getBirthDate(){
         return birthDate;
     }
-
-    public void setAddress(String address){
-        this.address = address;
+    public void setBirthDate(Date birthDate){
+        this.birthDate = birthDate;
     }
+
 
     public String getAddress(){
         return address;
     }
+    public void setAddress(String address){
+        this.address = address;
+    }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return null;
-//    }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() { return null; }
+
+    public String getRole() { return authorities; }
+
+    public void setAuthorities(String authorities){
+        this.authorities = authorities;
+    }
+
+
+    @Override
     public String getPassword() {
         return password;
     }
+    public void setPassword(String password){
+        this.password = password;
+    }
 
+
+    @Override
     public String getUsername() {
         return username;
     }
-
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return true;
-//    }
-
-    // TOREMOVE
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
-                '}';
+    public void setUsername(String username){
+        this.username = username;
     }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+    public void setAccountNonExpired(boolean accountNonExpired){
+        this.accountNonExpired = accountNonExpired;
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+    public void setAccountNonLocked(boolean accountNonLocked){
+        this.accountNonLocked = accountNonLocked;
+    }
+
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+    public void setCredentialsNonExpired(boolean credentialsNonExpired){ this.credentialsNonExpired = credentialsNonExpired; }
+
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+    public void setEnabled(boolean enabled){
+        this.enabled = enabled;
+    }
+
 }

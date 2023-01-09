@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page pageEncoding="UTF-8"
         contentType="text/html; charset=UTF-8" %>
 <%@ include file="../include/importTags.jsp" %>
@@ -37,16 +38,30 @@
 
         <div class="d-flex collapse w-50 justify-content-end align-items-center flex-nowrap p-2">
             <div class="pr-4">
-                <div class="btn-group" role="group">
-                    <a role="button" class="btn btn-info" href="<spring:url value='/login'/>">
-                        <spring:message code="login"/>
-                    </a>
-                    <a role="button" class="btn btn-outline-info" href="<spring:url value='/register'/>">
-                        <spring:message code="register"/>
-                    </a>
-                </div>
-            </div>
+                <sec:authorize access="isAuthenticated()">
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-light" disabled>
+                            <spring:message code="welcomeMessage"/>
+                                ${pageContext.request.userPrincipal.principal.firstName}
+                            !
+                        </a>
+                        <a role="button" class="btn btn-outline-info" href="<spring:url value='/logout'/>">
+                            <spring:message code="logout"/>
+                        </a>
+                    </div>
+                </sec:authorize>
 
+                <sec:authorize access="!isAuthenticated()">
+                        <div class="btn-group" role="group">
+                            <a role="button" class="btn btn-info" href="<spring:url value='/login'/>">
+                                <spring:message code="login"/>
+                            </a>
+                            <a role="button" class="btn btn-outline-info" href="<spring:url value='/register'/>">
+                                <spring:message code="register"/>
+                            </a>
+                        </div>
+                </sec:authorize>
+            </div>
             <div class="dropdown pr-4">
                 <button class="btn btn-outline-dark dropdown-toggle he" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <c:if test="${cookie.localeCookie.value == 'fr'}">

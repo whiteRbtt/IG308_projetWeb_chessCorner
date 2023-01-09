@@ -33,6 +33,21 @@ public class UserEntity {
     @Column(name="address")
     private String address;
 
+    @Column(name="authorities")
+    private String authorities;
+
+    @Column(name="non_expired")
+    private boolean accountNonExpired;
+
+    @Column(name="non_locked")
+    private boolean accountNonLocked;
+
+    @Column(name="credentials_non_expired")
+    private boolean credentialsNonExpired;
+
+    @Column(name="enabled")
+    private boolean enabled;
+
     public UserEntity(){
 
     }
@@ -45,6 +60,7 @@ public class UserEntity {
         this.mailAddress = mailAddress;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -52,6 +68,7 @@ public class UserEntity {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 
     public String getLastName() {
         return lastName;
@@ -61,6 +78,7 @@ public class UserEntity {
         this.lastName = lastName;
     }
 
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -68,6 +86,7 @@ public class UserEntity {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 
     public String getHashedPwd() {
         return hashedPwd;
@@ -77,6 +96,7 @@ public class UserEntity {
         this.hashedPwd = hashedPwd;
     }
 
+
     public Date getBirthDate() {
         return birthDate;
     }
@@ -84,6 +104,7 @@ public class UserEntity {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+
 
     public String getAddress() {
         return address;
@@ -93,4 +114,42 @@ public class UserEntity {
         this.address = address;
     }
 
+
+    public String getAuthorities() { return authorities; }
+
+    public void setAuthorities(String authorities) { this.authorities = authorities; }
+
+
+    public boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+
+    public boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+
+    public boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) { this.credentialsNonExpired = credentialsNonExpired; }
+
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }
