@@ -30,5 +30,4 @@ public class OrderDAO implements OrderDataAccess{
     public Order getOrderById(int id) {
         return providerConverter.orderEntityToOrderModel(orderRepository.getById(id));
     }
-
 }

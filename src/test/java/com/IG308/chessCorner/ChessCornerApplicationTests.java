@@ -32,8 +32,8 @@ import java.util.ArrayList;
 @SpringBootTest
 class ChessCornerApplicationTests {
 
-	private ProductDataAccess productDAO;
-	private UserDataAccess userDAO;
+	private ProductDataAccess ProductDataAccess;
+	private UserDataAccess userDataAccess;
 	private ProviderConverter providerConverter;
 
 	@Mock
@@ -45,8 +45,8 @@ class ChessCornerApplicationTests {
 	@BeforeEach
 	public void setUp(){
 		providerConverter = new ProviderConverter();
-		productDAO = new ProductDAO(productRepository, providerConverter);
-		userDAO = new UserDAO(userRepository, providerConverter);
+		ProductDataAccess = new ProductDAO(productRepository, providerConverter);
+		userDataAccess = new UserDAO(userRepository, providerConverter);
 	}
 
 	@Test
@@ -90,7 +90,7 @@ class ChessCornerApplicationTests {
 		translations.add(productTranslation);
 		product.setProductTranslations(translations);
 
-		Assert.assertEquals(productDAO.getProductById(15), product);
+		Assert.assertEquals(ProductDataAccess.getProductById(15), product);
 	}
 
 	@Test
@@ -118,6 +118,6 @@ class ChessCornerApplicationTests {
 		user.setAddress("1 rue de la paix");
 		user.setBirthDate(birthdate);
 
-		Assert.assertEquals(userDAO.findByMailAddress("johndoe@pm.me"), user);
+		Assert.assertEquals(userDataAccess.findByMailAddress("johndoe@pm.me"), user);
 	}
 }
