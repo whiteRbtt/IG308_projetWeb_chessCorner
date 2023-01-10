@@ -12,11 +12,11 @@ public class OrderLineEntity {
     private Integer orderLineId;
 
     @JoinColumn(name="orderid", referencedColumnName = "orderid")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private OrderEntity orderEntity;
 
     @JoinColumn(name="productid", referencedColumnName = "productid")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ProductEntity productEntity;
 
     @Column(name="quantity")
@@ -37,6 +37,7 @@ public class OrderLineEntity {
         this.orderLineId = orderLineId;
     }
 
+
     public OrderEntity getOrderEntity() {
         return orderEntity;
     }
@@ -44,6 +45,7 @@ public class OrderLineEntity {
     public void setOrderEntity(OrderEntity orderEntity) {
         this.orderEntity = orderEntity;
     }
+
 
     public ProductEntity getProductEntity() {
         return productEntity;
@@ -53,6 +55,7 @@ public class OrderLineEntity {
         this.productEntity = productEntity;
     }
 
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -60,6 +63,7 @@ public class OrderLineEntity {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
 
     public Double getPrice() {
         return price;

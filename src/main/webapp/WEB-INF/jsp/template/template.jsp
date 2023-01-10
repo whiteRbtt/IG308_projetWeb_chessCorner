@@ -98,7 +98,7 @@
     <footer class="d-flex w-100 justify-content-center align-items-center py-4 border-top sticky-bottom">
         <div class="d-flex w-75 justify-content-between">
             <p>Chess corner 2023 - <a href="<spring:url value='/about'/>">About us</a></p>
-            <p>Made with love and coffee</p>
+            <spring:message code="footerDevMessage"/>
         </div>
     </footer>
 

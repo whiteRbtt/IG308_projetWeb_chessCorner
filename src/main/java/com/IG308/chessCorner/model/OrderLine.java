@@ -26,6 +26,7 @@ public class OrderLine {
         this.product = product;
     }
 
+
     public Order getOrder() {
         return order;
     }
@@ -34,6 +35,7 @@ public class OrderLine {
         this.order = order;
     }
 
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -41,6 +43,7 @@ public class OrderLine {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
 
     public Double getPrice() {
         return price;

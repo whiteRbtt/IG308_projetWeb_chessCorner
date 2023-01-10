@@ -15,7 +15,7 @@
                 <input type="hidden" name="cmd" value="_xclick">
                 <input type="hidden" name="business" value="sb-moiol14643089@business.example.com">
                 <input type="hidden" name="currency_code" value="EUR">
-                <input type="hidden" name="return" value="http://localhost:8082/chesscorner/checkout/confirm?orderId=${orderId}">
+                <input type="hidden" name="return" value="http://localhost:8082/chesscorner/checkout/success?orderId=${orderId}">
                 <input type="hidden" name="cancel_return" value="http://localhost:8082/chesscorner/checkout/cancel?orderId=${orderId}">
 
                 <input type="hidden" name="item_name" value="n°${orderId}">

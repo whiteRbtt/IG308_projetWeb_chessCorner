@@ -8,6 +8,7 @@ public class BasketItem {
     @Max(100)
     @NotNull
     private Integer quantity;
+
     private Product product;
 
     public BasketItem(){}
@@ -19,6 +20,7 @@ public class BasketItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 
     public Integer getQuantity() {
         return quantity;

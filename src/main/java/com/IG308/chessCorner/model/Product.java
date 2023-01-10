@@ -3,9 +3,9 @@ package com.IG308.chessCorner.model;
 import java.util.ArrayList;
 
 public class Product {
+
     private Integer productId;
     private Double price;
-
     private ArrayList<ProductTranslation> productTranslations;
 
     public Product(){
@@ -19,6 +19,7 @@ public class Product {
         this.productId = productId;
     }
 
+
     public Double getPrice() {
         return price;
     }
@@ -27,13 +28,13 @@ public class Product {
         this.price = price;
     }
 
+
     public ArrayList<ProductTranslation> getProductTranslations() {
         return productTranslations;
     }
 
-    public void setProductTranslations(ArrayList<ProductTranslation> productTranslations) {
-        this.productTranslations = productTranslations;
-    }
+    public void setProductTranslations(ArrayList<ProductTranslation> productTranslations) { this.productTranslations = productTranslations; }
+
 
     @Override
     public boolean equals(Object p) {

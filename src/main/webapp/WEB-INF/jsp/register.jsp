@@ -53,6 +53,9 @@
             <div class="form-group">
                 <form:label path="phoneNumber"><spring:message code="phoneNumber"/></form:label>
                 <form:input path="phoneNumber" type="text" class="form-control"/>
+                <form:errors path="phoneNumber">
+                    <spring:message code="Pattern.registerForm.phoneNumber" />
+                </form:errors>
             </div>
             <div class="form-group">
                 <form:label path="address"><spring:message code="address"/></form:label>

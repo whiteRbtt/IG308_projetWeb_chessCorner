@@ -18,23 +18,24 @@ import javax.validation.Valid;
 @SessionAttributes({Constants.BASKET})
 public class CheckoutController {
 
-    private OrderDataAccess orderDAO;
-    private OrderLineDataAccess orderLineDAO;
+    private OrderDataAccess orderDataAccess;
+    private OrderLineDataAccess orderLineDataAccess;
 
     @Autowired
     public void AddOrderDAO(OrderDataAccess orderDAO){
-        this.orderDAO = orderDAO;
+        this.orderDataAccess = orderDAO;
     }
 
     @Autowired
     public void AddOrderLineDAO(OrderLineDataAccess orderLineDAO){
-        this.orderLineDAO = orderLineDAO;
+        this.orderLineDataAccess = orderLineDAO;
     }
 
     @ModelAttribute(Constants.BASKET)
     public Basket basket() {
         return new Basket();
     }
+
 
     @RequestMapping (method=RequestMethod.GET)
     public String checkout(Model model,
@@ -62,7 +63,7 @@ public class CheckoutController {
 
         Double orderPrice = 0.0;
 
-        Order savedOrder = orderDAO.save(new Order(
+        Order savedOrder = orderDataAccess.save(new Order(
                 new java.util.Date(),
                 (User) authentication.getPrincipal(),
                 false
@@ -78,7 +79,7 @@ public class CheckoutController {
                     basketItem.getQuantity(),
                     Math.round(orderLinePrice * 100.0) / 100.0
             );
-            orderLineDAO.save(orderLine);
+            orderLineDataAccess.save(orderLine);
         }
 
         model.addAttribute("title", Constants.WEBSITE_NAME);
@@ -92,21 +93,21 @@ public class CheckoutController {
                               @RequestParam("orderId") Integer orderId,
                               @Valid @ModelAttribute(value=Constants.BASKET) Basket basket){
 
-        // idéalement, garder la commande en DB et proposer depuis le profil de la payer plus tard
-        // (en fonction des stocks disponibles)
-        // sinon la supprimer de la DB
+        // traitements à effectuer :
+        // soit supprimer la commande non payée de la DB
+        // soit proposer à l'utilisateur de payer un commande enregistrée
 
         return "redirect:/basket";
     }
 
-    @RequestMapping(value="/confirm", method = RequestMethod.GET)
+    @RequestMapping(value="/success", method = RequestMethod.GET)
     public String successOrder(Model model,
                                @RequestParam("orderId") Integer orderId,
                                @Valid @ModelAttribute(value=Constants.BASKET) Basket basket){
 
-        Order paidOrder = orderDAO.getOrderById(orderId);
+        Order paidOrder = orderDataAccess.getOrderById(orderId);
         paidOrder.setIsPaid(true);
-        orderDAO.save(paidOrder);
+        orderDataAccess.save(paidOrder);
 
         basket.getBasketProducts().clear();
 

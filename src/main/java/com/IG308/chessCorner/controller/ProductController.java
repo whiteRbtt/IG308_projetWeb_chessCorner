@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.print.attribute.standard.PresentationDirection;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -32,21 +33,27 @@ public class ProductController {
                           @RequestParam("id")String productId,
                           @CookieValue(value="localeCookie", defaultValue="fr") String locale) {
 
-        Product product = productDataAccess.getProductById(Integer.parseInt(productId));
+        try {
+            Product product = productDataAccess.getProductById(Integer.parseInt(productId));
 
-        product.getProductTranslations().forEach(translation -> {
-            if (translation.getLanguage().getCode().equals(locale)) {
-                model.addAttribute("name", translation.getProductName());
-                model.addAttribute("description", translation.getProductDescription());
+            product.getProductTranslations().forEach(translation -> {
+                if (translation.getLanguage().getCode().equals(locale)) {
+                    model.addAttribute("name", translation.getProductName());
+                    model.addAttribute("description", translation.getProductDescription());
+                }
+            });
+
+            if(!model.containsAttribute("basketItem")){
+                model.addAttribute("basketItem", new BasketItem());
             }
-        });
 
-        if(!model.containsAttribute("basketItem")){
-            model.addAttribute("basketItem", new BasketItem());
+            model.addAttribute("product", product);
+            model.addAttribute("title", Constants.WEBSITE_NAME);
+            return "integrated:product";
+
+        } catch (Exception e) {
+            return "redirect:/product/all";
         }
-        model.addAttribute("product", product);
-        model.addAttribute("title", Constants.WEBSITE_NAME);
-        return "integrated:product";
     }
 
     @RequestMapping(value="/all", method = RequestMethod.GET)
@@ -62,20 +69,17 @@ public class ProductController {
     public String addToBasket(
             @RequestParam("id")String productId,
             @Valid @ModelAttribute(value="basketItem") BasketItem basketItem,
-            final BindingResult errors,
+            final BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 
-        if (errors.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.basketItem", errors);
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.basketItem", bindingResult);
             redirectAttributes.addFlashAttribute("basketItem", basketItem);
             return "redirect:/product?id="+productId;
-        } else {
-
-            // appliquer promotions ici
-
-            basketItem.setProduct(productDataAccess.getProductById(Integer.parseInt(productId)));
-            redirectAttributes.addFlashAttribute("basketItem", basketItem);
-            return "redirect:/basket";
         }
+
+        basketItem.setProduct(productDataAccess.getProductById(Integer.parseInt(productId)));
+        redirectAttributes.addFlashAttribute("basketItem", basketItem);
+        return "redirect:/basket";
     }
 }

@@ -27,6 +27,7 @@ public class Order {
         this.orderId = orderId;
     }
 
+
     public Date getOrderDate() {
         return orderDate;
     }
@@ -35,6 +36,7 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+
     public User getUser() {
         return user;
     }
@@ -42,6 +44,7 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
 
     public Boolean getIsPaid() {
         return isPaid;

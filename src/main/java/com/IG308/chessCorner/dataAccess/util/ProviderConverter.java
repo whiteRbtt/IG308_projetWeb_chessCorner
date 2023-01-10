@@ -37,7 +37,6 @@ public class ProviderConverter {
 
     public ProductEntity productModelToProductEntity(Product product) {
         ProductEntity productEntity = mapper.map(product, ProductEntity.class);
-
         Collection<TranslationEntity> productTranslations = new ArrayList<>();
         for (ProductTranslation translation : product.getProductTranslations()) {
             TranslationEntity translationEntity = translationModelToTranslationEntity(translation);
@@ -45,13 +44,11 @@ public class ProviderConverter {
             productTranslations.add(translationEntity);
         }
         productEntity.setProductTranslations(productTranslations);
-
         return productEntity;
     }
 
     public Product productEntityToProductModel(ProductEntity productEntity) {
         Product product = mapper.map(productEntity, Product.class);
-
         ArrayList<ProductTranslation> productTranslations = new ArrayList<>();
         for (TranslationEntity translationEntity : productEntity.getProductTranslations()) {
             ProductTranslation productTranslation = translationEntityToTranslationModel(translationEntity);
@@ -59,7 +56,6 @@ public class ProviderConverter {
             productTranslations.add(productTranslation);
         }
         product.setProductTranslations(productTranslations);
-
         return product;
     }
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -38,11 +37,15 @@ public class BasketController {
     }
 
     @RequestMapping(value="", method = RequestMethod.POST, params = "updateCart")
-    public String basketUpdate(Model model, @Valid @ModelAttribute(value=Constants.BASKET) Basket basket, final BindingResult result){
+    public String basketUpdate(Model model,
+                               @Valid @ModelAttribute(value=Constants.BASKET) Basket basket,
+                               final BindingResult bindingResult){
+
         model.addAttribute("title", Constants.WEBSITE_NAME);
-        if(result.hasErrors()){
+        if(bindingResult.hasErrors()){
             return "integrated:basket";
         }
+
         basket.getBasketProducts().entrySet().removeIf(entry -> entry.getValue().getQuantity() <= 0);
 
         basket.getBasketProducts().entrySet().forEach(entry -> {
@@ -56,13 +59,12 @@ public class BasketController {
     @RequestMapping(value="", method = RequestMethod.POST, params = "placeOrder")
     public String placeOrder(Model model,
                              @Valid @ModelAttribute(value=Constants.BASKET) Basket basket,
-                             final BindingResult result,
-                             RedirectAttributes redirectAttributes){
-        if(result.hasErrors()){
+                             final BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
             model.addAttribute("title", Constants.WEBSITE_NAME);
             return "integrated:basket";
         }
-
         return "redirect:/checkout";
     }
 }

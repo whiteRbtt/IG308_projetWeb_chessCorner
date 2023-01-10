@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 @RequestMapping(value="/register")
 public class RegisterController {
 
-    private UserDataAccess userDAO;
+    private UserDataAccess userDataAccess;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public RegisterController(){
@@ -33,7 +33,7 @@ public class RegisterController {
 
     @Autowired
     public void AddUserDAO(UserDAO userDAO){
-        this.userDAO = userDAO;
+        this.userDataAccess = userDAO;
     }
 
     @RequestMapping (method=RequestMethod.GET)
@@ -45,16 +45,21 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String registration(Model model, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, HttpServletRequest request){
+    public String registration(Model model,
+                               @Valid @ModelAttribute("user") User user,
+                               BindingResult bindingResult,
+                               HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("title", Constants.WEBSITE_NAME);
             return "integrated:register";
         }
 
-        User userDB = userDAO.findByMailAddress(user.getUsername());
+        User userDB = userDataAccess.findByMailAddress(user.getUsername());
         if(userDB != null){
             bindingResult.addError(new FieldError("user", "username", "already registered"));
             model.addAttribute("alreadyRegistered", "alreadyRegistered");
+            model.addAttribute("title", Constants.WEBSITE_NAME);
             return "integrated:register";
         }
 
@@ -63,12 +68,13 @@ public class RegisterController {
         if(calendar.get(Calendar.YEAR) < Constants.MIN_YEAR){
             bindingResult.addError(new FieldError("user", "birthDate", "minYearNotValid"));
             model.addAttribute("minYearNotValid", "minYearNotValid");
+            model.addAttribute("title", Constants.WEBSITE_NAME);
             return "integrated:register";
         }
 
         String clearPassword = user.getPassword();
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        User createdUser = userDAO.save(user);
+        User createdUser = userDataAccess.save(user);
 
         try {
             request.login(createdUser.getUsername(), clearPassword);

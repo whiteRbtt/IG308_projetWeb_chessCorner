@@ -22,8 +22,7 @@
             <form:form id="basketItem" action="/chesscorner/product/add?id=${product.getProductId()}" method="POST" modelAttribute="basketItem">
                 <div class="d-flex justify-content-start align-items-center">
                     <div class="d-flex flex-column align-items-start">
-                        <form:input path="quantity" min="1" max="99" value="1"/>
-
+                        <form:input path="quantity" min="1" value="1"/>
                         <div class="mt-3">
                             <form:errors path="quantity">
                                 <spring:message code="basketItem.quantity"/>

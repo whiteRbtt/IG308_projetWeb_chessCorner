@@ -18,5 +18,4 @@ public class LoginController {
         model.addAttribute("title", Constants.WEBSITE_NAME);
         return "integrated:login";
     }
-
 }

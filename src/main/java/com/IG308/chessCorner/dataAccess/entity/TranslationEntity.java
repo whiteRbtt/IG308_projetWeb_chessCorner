@@ -37,6 +37,7 @@ public class TranslationEntity implements Serializable {
         this.translationId = translationId;
     }
 
+
     public String getProductName() {
         return productName;
     }
@@ -44,6 +45,7 @@ public class TranslationEntity implements Serializable {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
 
     public String getProductDescription() {
         return productDescription;
@@ -53,6 +55,7 @@ public class TranslationEntity implements Serializable {
         this.productDescription = productDescription;
     }
 
+
     public ProductEntity getProductEntity() {
         return productEntity;
     }
@@ -60,6 +63,7 @@ public class TranslationEntity implements Serializable {
     public void setProductEntity(ProductEntity productEntity) {
         this.productEntity = productEntity;
     }
+
 
     public LanguageEntity getLanguageEntity() {
         return languageEntity;

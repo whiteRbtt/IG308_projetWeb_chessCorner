@@ -19,6 +19,7 @@ public class ProductTranslation {
     	this.product = product;
     }
 
+
     public Language getLanguage() {
     	return language;
     }
@@ -26,6 +27,7 @@ public class ProductTranslation {
     public void setLanguage(Language language) {
     	this.language = language;
     }
+
 
     public String getProductName() {
     	return productName;
@@ -35,6 +37,7 @@ public class ProductTranslation {
     	this.productName = productName;
     }
 
+
     public String getProductDescription() {
     	return productDescription;
     }
@@ -42,6 +45,7 @@ public class ProductTranslation {
     public void setProductDescription(String productDescription) {
     	this.productDescription = productDescription;
     }
+
 
     @Override
     public boolean equals(Object t) {

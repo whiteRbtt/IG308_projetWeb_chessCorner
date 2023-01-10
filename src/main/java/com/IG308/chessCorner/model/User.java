@@ -20,6 +20,7 @@ public class User implements UserDetails{
     private String password;
 
     @Size(max=20)
+    @Pattern(regexp="[0-9]*")
     private String phoneNumber;
 
     @NotNull
@@ -50,12 +51,14 @@ public class User implements UserDetails{
 
     private boolean enabled = true;
 
+
     public User() {
     }
 
     public String getPhoneNumber(){
         return phoneNumber;
     }
+
     public void setPhoneNumber(String phoneNumber){
         if (phoneNumber == null || phoneNumber.isEmpty()) {
             this.phoneNumber = null;
@@ -64,9 +67,11 @@ public class User implements UserDetails{
         }
     }
 
+
     public String getFirstName(){
         return firstName;
     }
+
     public void setFirstName(String firstName){
         this.firstName = firstName;
     }
@@ -75,6 +80,7 @@ public class User implements UserDetails{
     public String getLastName(){
         return lastName;
     }
+
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
@@ -83,6 +89,7 @@ public class User implements UserDetails{
     public Date getBirthDate(){
         return birthDate;
     }
+
     public void setBirthDate(Date birthDate){
         this.birthDate = birthDate;
     }
@@ -91,6 +98,7 @@ public class User implements UserDetails{
     public String getAddress(){
         return address;
     }
+
     public void setAddress(String address){
         this.address = address;
     }
@@ -110,6 +118,7 @@ public class User implements UserDetails{
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password){
         this.password = password;
     }
@@ -119,6 +128,7 @@ public class User implements UserDetails{
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username){
         this.username = username;
     }
@@ -128,6 +138,7 @@ public class User implements UserDetails{
     public boolean isAccountNonExpired() {
         return accountNonExpired;
     }
+
     public void setAccountNonExpired(boolean accountNonExpired){
         this.accountNonExpired = accountNonExpired;
     }
@@ -137,6 +148,7 @@ public class User implements UserDetails{
     public boolean isAccountNonLocked() {
         return accountNonLocked;
     }
+
     public void setAccountNonLocked(boolean accountNonLocked){
         this.accountNonLocked = accountNonLocked;
     }
@@ -146,6 +158,7 @@ public class User implements UserDetails{
     public boolean isCredentialsNonExpired() {
         return credentialsNonExpired;
     }
+
     public void setCredentialsNonExpired(boolean credentialsNonExpired){ this.credentialsNonExpired = credentialsNonExpired; }
 
 
@@ -153,9 +166,11 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return enabled;
     }
+
     public void setEnabled(boolean enabled){
         this.enabled = enabled;
     }
+
 
     @Override
     public boolean equals(Object user) {

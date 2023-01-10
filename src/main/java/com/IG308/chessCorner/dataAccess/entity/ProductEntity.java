@@ -30,6 +30,7 @@ public class ProductEntity {
         this.productId = productId;
     }
 
+
     public Double getPrice() {
         return price;
     }
@@ -37,6 +38,7 @@ public class ProductEntity {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 
     public Collection<TranslationEntity> getProductTranslations() {
         return productTranslations;
