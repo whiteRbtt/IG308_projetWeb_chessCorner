@@ -34,13 +34,4 @@ public class Product {
     public void setProductTranslations(ArrayList<ProductTranslation> productTranslations) {
         this.productTranslations = productTranslations;
     }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", price=" + price +
-                ", productTranslations=" + productTranslations +
-                '}';
-    }
 }

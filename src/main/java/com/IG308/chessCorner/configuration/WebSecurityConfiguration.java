@@ -16,7 +16,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String LOGIN_REQUEST = "/login";
     public static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/", "/css/**", "/images/**", "/product/**", "/register/**", "/basket/**", "/about/**"};
-    public static final String[] AUTHORIZED_REQUESTS_LOGGED = new String[]{"/checkout"};
+    public static final String[] AUTHORIZED_REQUESTS_LOGGED = new String[]{};
 
     private UserDetailsService userDetailsServiceImpl;
 

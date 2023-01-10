@@ -4,7 +4,6 @@ public class OrderLine {
 
     private Product product;
     private Order order;
-
     private Integer quantity;
     private Double price;
 
@@ -50,5 +49,4 @@ public class OrderLine {
     public void setPrice(Double price) {
         this.price = price;
     }
-
 }

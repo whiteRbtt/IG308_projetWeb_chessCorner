@@ -12,11 +12,6 @@ public class BasketItem {
 
     public BasketItem(){}
 
-    public BasketItem(Product product, Integer quantity){
-        this.product = product;
-        this.quantity = quantity;
-    }
-
     public Product getProduct() {
         return product;
     }
@@ -31,13 +26,5 @@ public class BasketItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "BasketItem{" +
-                "product=" + product +
-                ", quantity=" + quantity +
-                '}';
     }
 }

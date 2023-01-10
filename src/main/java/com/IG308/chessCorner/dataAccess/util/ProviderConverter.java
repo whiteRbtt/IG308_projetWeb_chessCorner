@@ -8,6 +8,7 @@ import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Component
 public class ProviderConverter {
@@ -36,6 +37,15 @@ public class ProviderConverter {
 
     public ProductEntity productModelToProductEntity(Product product) {
         ProductEntity productEntity = mapper.map(product, ProductEntity.class);
+
+        Collection<TranslationEntity> productTranslations = new ArrayList<>();
+        for (ProductTranslation translation : product.getProductTranslations()) {
+            TranslationEntity translationEntity = translationModelToTranslationEntity(translation);
+            translationEntity.setProductEntity(productEntity);
+            productTranslations.add(translationEntity);
+        }
+        productEntity.setProductTranslations(productTranslations);
+
         return productEntity;
     }
 
@@ -53,22 +63,15 @@ public class ProviderConverter {
         return product;
     }
 
-//    public LanguageEntity languageModelToLanguageEntity(Language language) {
-//        LanguageEntity languageEntity = mapper.map(language, LanguageEntity.class);
-//        return languageEntity;
-//    }
-
     public Language languageEntityToLanguageModel(LanguageEntity languageEntity) {
         Language language = mapper.map(languageEntity, Language.class);
         return language;
     }
 
-//    public TranslationEntity translationModelToTranslationEntity(ProductTranslation productTranslation) {
-//        TranslationEntity translationEntity = mapper.map(productTranslation, TranslationEntity.class);
-//        translationEntity.setProductEntity(productModelToProductEntity(productTranslation.getProduct()));
-//        translationEntity.setLanguageEntity(languageModelToLanguageEntity(productTranslation.getLanguage()));
-//        return translationEntity;
-//    }
+    public LanguageEntity languageModelToLanguageEntity(Language language) {
+        LanguageEntity languageEntity = mapper.map(language, LanguageEntity.class);
+        return languageEntity;
+    }
 
     public ProductTranslation translationEntityToTranslationModel(TranslationEntity translationEntity) {
         ProductTranslation productTranslation = mapper.map(translationEntity, ProductTranslation.class);
@@ -76,10 +79,18 @@ public class ProviderConverter {
         return productTranslation;
     }
 
+    public TranslationEntity translationModelToTranslationEntity(ProductTranslation productTranslation) {
+        TranslationEntity translationEntity = mapper.map(productTranslation, TranslationEntity.class);
+        translationEntity.setLanguageEntity(languageModelToLanguageEntity(productTranslation.getLanguage()));
+        return translationEntity;
+    }
+
     public OrderLineEntity orderLineModelToOrderLineEntity(OrderLine orderLine) {
         OrderLineEntity orderLineEntity = mapper.map(orderLine, OrderLineEntity.class);
         orderLineEntity.setProductEntity(productModelToProductEntity(orderLine.getProduct()));
         orderLineEntity.setOrderEntity(orderModelToOrderEntity(orderLine.getOrder()));
+        orderLineEntity.setQuantity(orderLine.getQuantity());
+        orderLineEntity.setPrice(orderLine.getPrice());
         return orderLineEntity;
     }
 
@@ -87,6 +98,8 @@ public class ProviderConverter {
         OrderLine orderLine = mapper.map(orderLineEntity, OrderLine.class);
         orderLine.setProduct(productEntityToProductModel(orderLineEntity.getProductEntity()));
         orderLine.setOrder(orderEntityToOrderModel(orderLineEntity.getOrderEntity()));
+        orderLine.setQuantity(orderLineEntity.getQuantity());
+        orderLine.setPrice(orderLineEntity.getPrice());
         return orderLine;
     }
 

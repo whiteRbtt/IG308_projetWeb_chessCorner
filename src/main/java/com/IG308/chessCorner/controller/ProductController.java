@@ -70,9 +70,12 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("basketItem", basketItem);
             return "redirect:/product?id="+productId;
         } else {
+
+            // appliquer promotions ici
+
             basketItem.setProduct(productDataAccess.getProductById(Integer.parseInt(productId)));
-            System.out.println(basketItem);
-            return "integrated:basket";
+            redirectAttributes.addFlashAttribute("basketItem", basketItem);
+            return "redirect:/basket";
         }
     }
 }

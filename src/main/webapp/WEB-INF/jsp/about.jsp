@@ -4,9 +4,16 @@
 
 <html>
 <head>
-    <title>${title}</title>
+    <title>${title} - <spring:message code="aboutUs"/></title>
 </head>
 <body>
-<h1>about</h1>
+    <div class="d-flex w-100 flex-column justify-content-start align-items-center">
+        <h2>
+            <spring:message code="aboutUs"/>
+        </h2>
+        <p class="mt-5">
+            <spring:message code="aboutUsContent"/>
+        </p>
+    </div>
 </body>
 </html>

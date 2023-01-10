@@ -19,11 +19,11 @@ public class TranslationEntity implements Serializable {
     private String productDescription;
 
     @JoinColumn(name="productid", referencedColumnName="productid")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ProductEntity productEntity;
 
     @JoinColumn(name="languagecode", referencedColumnName="code")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private LanguageEntity languageEntity;
 
     public TranslationEntity(){

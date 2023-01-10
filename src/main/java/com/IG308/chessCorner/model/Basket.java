@@ -1,5 +1,5 @@
 package com.IG308.chessCorner.model;
-
+import com.IG308.chessCorner.Constants;
 import java.util.HashMap;
 
 public class Basket {
@@ -14,7 +14,16 @@ public class Basket {
             return basketProducts;
         }
 
-        public void setBasketProducts(HashMap<Integer, BasketItem> basketProducts) {
-            this.basketProducts = basketProducts;
+        public void addProduct(BasketItem basketItem){
+            if(basketProducts.containsKey(basketItem.getProduct().getProductId())){
+                if(basketProducts.get(basketItem.getProduct().getProductId()).getQuantity() + basketItem.getQuantity() > Constants.STOCK){
+                    basketProducts.get(basketItem.getProduct().getProductId()).setQuantity(Constants.STOCK);
+                }
+                else {
+                    basketProducts.get(basketItem.getProduct().getProductId()).setQuantity(basketProducts.get(basketItem.getProduct().getProductId()).getQuantity() + basketItem.getQuantity());
+                }
+            } else {
+                basketProducts.put(basketItem.getProduct().getProductId(), basketItem);
+            }
         }
 }
