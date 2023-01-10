@@ -42,4 +42,13 @@ public class ProductTranslation {
     public void setProductDescription(String productDescription) {
     	this.productDescription = productDescription;
     }
+
+    @Override
+    public boolean equals(Object t) {
+        	if(t instanceof ProductTranslation){
+                ProductTranslation productTranslation = (ProductTranslation) t;
+                return productTranslation.getProduct().equals(this.getProduct()) && productTranslation.getLanguage().equals(this.getLanguage()) && productTranslation.getProductName().equals(this.getProductName()) && productTranslation.getProductDescription().equals(this.getProductDescription());
+            }
+            return false;
+    }
 }

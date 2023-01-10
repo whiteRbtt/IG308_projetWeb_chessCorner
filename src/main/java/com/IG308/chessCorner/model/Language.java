@@ -26,7 +26,11 @@ public class Language {
     }
 
     @Override
-    public String toString() {
-    	return "Language [code=" + code + ", name=" + name + "]";
+    public boolean equals(Object l){
+        if(l instanceof Language){
+            Language language = (Language) l;
+            return language.getCode().equals(this.getCode()) && language.getName().equals(this.getName());
+        }
+        return false;
     }
 }

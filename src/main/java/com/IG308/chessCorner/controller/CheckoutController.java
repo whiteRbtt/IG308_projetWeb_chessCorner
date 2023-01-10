@@ -5,17 +5,13 @@ import com.IG308.chessCorner.dataAccess.dao.OrderDataAccess;
 import com.IG308.chessCorner.dataAccess.dao.OrderLineDataAccess;
 import com.IG308.chessCorner.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.beans.Transient;
-import java.util.Formatter;
+
 
 @Controller
 @RequestMapping(value="/checkout")
@@ -96,7 +92,9 @@ public class CheckoutController {
                               @RequestParam("orderId") Integer orderId,
                               @Valid @ModelAttribute(value=Constants.BASKET) Basket basket){
 
-        // effectuer les traitements pour annuler la commande ou proposer de payer plus tard
+        // idéalement, garder la commande en DB et proposer depuis le profil de la payer plus tard
+        // (en fonction des stocks disponibles)
+        // sinon la supprimer de la DB
 
         return "redirect:/basket";
     }
@@ -106,10 +104,11 @@ public class CheckoutController {
                                @RequestParam("orderId") Integer orderId,
                                @Valid @ModelAttribute(value=Constants.BASKET) Basket basket){
 
-        orderDAO.getOrderById(orderId).setIsPaid(true);
-        basket.getBasketProducts().clear();
+        Order paidOrder = orderDAO.getOrderById(orderId);
+        paidOrder.setIsPaid(true);
+        orderDAO.save(paidOrder);
 
-        System.out.println("thanks for your purchase");
+        basket.getBasketProducts().clear();
 
         return "redirect:/";
     }

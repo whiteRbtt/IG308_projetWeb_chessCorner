@@ -157,4 +157,18 @@ public class User implements UserDetails{
         this.enabled = enabled;
     }
 
+    @Override
+    public boolean equals(Object user) {
+        if (user instanceof User) {
+            return username.equals(((User) user).getUsername())
+                    && password.equals(((User) user).getPassword())
+                    && phoneNumber.equals(((User) user).getPhoneNumber())
+                    && firstName.equals(((User) user).getFirstName())
+                    && lastName.equals(((User) user).getLastName())
+                    && birthDate.equals(((User) user).getBirthDate())
+                    && address.equals(((User) user).getAddress());
+        }
+        return false;
+    }
+
 }

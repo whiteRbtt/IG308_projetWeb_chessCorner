@@ -34,4 +34,13 @@ public class Product {
     public void setProductTranslations(ArrayList<ProductTranslation> productTranslations) {
         this.productTranslations = productTranslations;
     }
+
+    @Override
+    public boolean equals(Object p) {
+    	if(p instanceof Product){
+            Product product = (Product) p;
+            return product.getPrice().equals(this.getPrice());
+        }
+        return false;
+    }
 }
